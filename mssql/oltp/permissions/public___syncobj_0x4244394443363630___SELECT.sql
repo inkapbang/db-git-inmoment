@@ -1,0 +1,2 @@
+GRANT SELECT ON [syncobj_0x4244394443363630] TO [public]
+GO

@@ -1,0 +1,5 @@
+CREATE ROLE [MSReplPAL_6_1]
+GO
+
+
+GO

@@ -1,0 +1,14 @@
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+CREATE Procedure Update_ReportColumn_Visibility
+AS
+UPDATE ReportColumn SET visibility = CAST(hidden AS TINYINT) WHERE visibility IS NULL
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+GO

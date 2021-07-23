@@ -1,0 +1,23 @@
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+/* This performs update as we are respecifying the entire mutli value attribute.*/
+CREATE TRIGGER [dbo].[t__UserAccountSegment_ins2] ON [dbo].[UserAccountSegment] FOR INSERT 
+AS BEGIN 
+ INSERT INTO [rli_con].[RadiantUserAccount2_LOG]
+   (RLIBASETABLE,RLICHANGETYPE,RLICHANGES,[legacysegment],[uid]) 
+   select distinct 'OLTP.dbo.RadiantUserAccount2','update','legacysegment',rua.legacysegment,rua.uid
+   FROM [dbo].[RadiantUserAccount2] rua
+   JOIN inserted on rua.objectId = inserted.userAccountObjectId
+ END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+ENABLE TRIGGER [dbo].[t__UserAccountSegment_ins2] ON [dbo].[UserAccountSegment]
+GO
+
+GO
